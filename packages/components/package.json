@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "build": "rollup -c",
-    "build:dev": "pnpm build && rm -rf ../../dist/components && mkdir -p ../../dist && mv dist ../../dist/components"
+    "build": "rollup -c && rm -rf ../../dist/components && mkdir -p ../../dist && mv dist ../../dist/components"
   },
   "license": "Apache-2.0",
   "devDependencies": {

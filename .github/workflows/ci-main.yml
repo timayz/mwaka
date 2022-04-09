@@ -39,7 +39,7 @@ jobs:
       - name: Build aira
         run: pnpm build --filter aira
       - name: Logs
-        run: ls dist
+        run: ls
       - name: Build components
         run: pnpm build --filter components
       - name: Create package

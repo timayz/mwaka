@@ -37,9 +37,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Build aira
-        run: pnpm build --filter aira
-      - name: Logs
-        run: ls
+        run: pnpm build --filter aria
       - name: Build components
         run: pnpm build --filter components
       - name: Create package

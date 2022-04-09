@@ -1,4 +1,4 @@
-name: "Ci - main"
+name: "Ci main"
 
 on:
   push:

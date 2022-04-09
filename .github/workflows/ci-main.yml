@@ -1,0 +1,43 @@
+name: "Ci - main"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14.x"
+      - run: pnpm audit
+
+  release:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14.x"
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build aira
+        run: pnpm build --filter aira
+      - name: Build components
+        run: pnpm build --filter components
+      - name: Create package
+        run: mkdir build && cp -a dist build/ && cp package.json build/
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: node_modules/.bin/semantic-release

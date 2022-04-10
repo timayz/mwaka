@@ -9,4 +9,3 @@ plugins:
   - path: "@semantic-release/git"
     assets:
       - "package.json"
-      - "solid-js/package.json"

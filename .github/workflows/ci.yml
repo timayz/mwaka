@@ -1,15 +1,18 @@
-name: "Ci main"
-
-on:
-  push:
-    branches:
-      - main
+name: "Ci"
 
 jobs:
-  node-ci-main:
+  testing:
+    uses: timada-org/.github/.github/workflows/node-ci-pull-request.yml@v1.1.0
+    on: pull_request
+
+  release:
     uses: timada-org/.github/.github/workflows/node-ci-main.yml@v1.1.0
     with:
       filters: --filter aria --filter components
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    on:
+      push:
+        branches:
+          - main

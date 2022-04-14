@@ -1,4 +1,4 @@
-name: "Ci"
+name: "Audit"
 
 on:
   schedule:

@@ -1,0 +1,16 @@
+name: "Ci"
+
+on:
+  schedule:
+    - cron: 0 9 * * 1
+  push:
+    branches:
+      - main
+    paths:
+      - 'pnpm-lock.yaml'
+on:
+  schedule:
+    - cron: 20 07 * * 1
+jobs:
+  node:
+    uses: timada-org/.github/.github/workflows/node-audit.yml@v1.1.1

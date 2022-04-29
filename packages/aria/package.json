@@ -26,8 +26,7 @@
     "rollup": "^2.70.1",
     "rollup-preset-solid": "^1.4.0",
     "solid-js": "^1.3.14",
-    "typescript": "^4.6.3",
-    "mwaka": "0.0.0"
+    "typescript": "^4.6.3"
   },
   "peerDependencies": {
     "solid-js": "^1.3.14"

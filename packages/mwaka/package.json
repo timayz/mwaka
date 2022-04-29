@@ -1,47 +1,70 @@
 {
-  "name": "mwaka",
-  "version": "0.0.8",
-  "description": "A collection of libraries and tools that help you build adaptive, accessible, and robust user experiences.",
-  "files": [
-    "dist"
-  ],
-  "main": "dist/components/esm/index.js",
-  "module": "dist/components/esm/index.js",
-  "types": "dist/components/types/index.d.ts",
-  "exports": {
-    "./aria": {
-      "solid": "./dist/aria/source/index.jsx",
-      "import": "./dist/aria/esm/index.js",
-      "browser": "./dist/aria/esm/index.js",
-      "require": "./dist/aria/esm/index.js",
-      "node": "./dist/aria/esm/index.js"
+    "name": "mwaka",
+    "version": "0.0.0",
+    "description": "A collection of libraries and tools that help you build adaptive, accessible, and robust user experiences.",
+    "type": "module",
+    "files": [
+      "dist"
+    ],
+    "main": "dist/components/esm/index.js",
+    "module": "dist/components/esm/index.js",
+    "types": "dist/components/types/index.d.ts",
+    "exports": {
+      "./aria": {
+        "solid": "./dist/aria/source/index.jsx",
+        "import": "./dist/aria/esm/index.js",
+        "browser": "./dist/aria/esm/index.js",
+        "require": "./dist/aria/esm/index.js",
+        "node": "./dist/aria/esm/index.js"
+      },
+      "./types": {
+        "solid": "./dist/types/source/index.jsx",
+        "import": "./dist/types/esm/index.js",
+        "browser": "./dist/types/esm/index.js",
+        "require": "./dist/types/esm/index.js",
+        "node": "./dist/types/esm/index.js"
+      },
+      "./stately": {
+        "solid": "./dist/stately/source/index.jsx",
+        "import": "./dist/stately/esm/index.js",
+        "browser": "./dist/stately/esm/index.js",
+        "require": "./dist/stately/esm/index.js",
+        "node": "./dist/stately/esm/index.js"
+      },
+      ".": {
+        "solid": "./dist/components/source/index.jsx",
+        "import": "./dist/components/esm/index.js",
+        "browser": "./dist/components/esm/index.js",
+        "require": "./dist/components/esm/index.js",
+        "node": "./dist/components/esm/index.js"
+      }
     },
-    ".": {
-      "solid": "./dist/components/source/index.jsx",
-      "import": "./dist/components/esm/index.js",
-      "browser": "./dist/components/esm/index.js",
-      "require": "./dist/components/esm/index.js",
-      "node": "./dist/components/esm/index.js"
+    "typesVersions": {
+      "*": {
+        "aria": [
+          "dist/aria/types/index.d.ts"
+        ],
+        "types": [
+          "dist/types/types/index.d.ts"
+        ],
+        "stately": [
+          "dist/stately/types/index.d.ts"
+        ]
+      }
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/timada-org/mwaka.git"
+    },
+    "keywords": [],
+    "license": "Apache-2.0",
+    "bugs": {
+      "url": "https://github.com/timada-org/mwaka/issues"
+    },
+    "homepage": "https://github.com/timada-org/mwaka#readme",
+    "peerDependencies": {
+      "solid-js": "^1.3.14",
+      "@internationalized/date": "^3.0.0-alpha.4"
     }
-  },
-  "typesVersions": {
-    "*": {
-      "aria": [
-        "dist/aria/types/index.d.ts"
-      ]
-    }
-  },
-  "peerDependencies": {
-    "solid-js": "^1.3.14"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/timada-org/mwaka.git"
-  },
-  "keywords": [],
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/timada-org/mwaka/issues"
-  },
-  "homepage": "https://github.com/timada-org/mwaka#readme"
-}
+  }
+  

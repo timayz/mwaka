@@ -1,5 +1,5 @@
 {
-  "name": "aria",
+  "name": "types",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,20 +16,22 @@
     }
   },
   "scripts": {
-    "build": "rollup -c && rm -rf ../mwaka/dist/aria && mkdir -p ../mwaka/dist && mv dist ../mwaka/dist/aria"
+    "build": "rollup -c && rm -rf ../mwaka/dist/types && mkdir -p ../mwaka/dist && mv dist ../mwaka/dist/types"
   },
   "files": [
     "dist"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
+    "@internationalized/date": "^3.0.0-alpha.4",
+    "mwaka": "0.0.0",
     "rollup": "^2.70.1",
     "rollup-preset-solid": "^1.4.0",
     "solid-js": "^1.3.14",
-    "typescript": "^4.6.3",
-    "mwaka": "0.0.0"
+    "typescript": "^4.6.3"
   },
   "peerDependencies": {
-    "solid-js": "^1.3.14"
+    "solid-js": "^1.3.14",
+    "@internationalized/date": "^3.0.0-alpha.4"
   }
 }

@@ -2,15 +2,33 @@
   "name": "components",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "browser": "./dist/esm/index.js",
+      "require": "./dist/esm/index.js",
+      "node": "./dist/esm/index.js"
+    }
+  },
   "scripts": {
     "build": "rollup -c && rm -rf ../mwaka/dist/components && mkdir -p ../mwaka/dist && mv dist ../mwaka/dist/components"
   },
+  "files": [
+    "dist"
+  ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "mwaka": "file:../mwaka",
+    "mwaka": "0.0.0",
     "rollup": "^2.70.1",
     "rollup-preset-solid": "^1.4.0",
     "solid-js": "^1.3.14",
     "typescript": "^4.6.3"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.3.14"
   }
 }

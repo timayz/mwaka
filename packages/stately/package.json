@@ -1,5 +1,5 @@
 {
-  "name": "aria",
+  "name": "stately",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,7 +16,7 @@
     }
   },
   "scripts": {
-    "build": "rollup -c && rm -rf ../mwaka/dist/aria && mkdir -p ../mwaka/dist && mv dist ../mwaka/dist/aria"
+    "build": "rollup -c && rm -rf ../mwaka/dist/stately && mkdir -p ../../dist && mv dist ../mwaka/dist/stately"
   },
   "files": [
     "dist"

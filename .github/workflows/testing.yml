@@ -5,4 +5,4 @@ on:
 
 jobs:
   node:
-    uses: timada-org/.github/.github/workflows/node-testing.yml@v2.0.0
+    uses: timada-org/.github/.github/workflows/node-testing.yml@v2.0.1

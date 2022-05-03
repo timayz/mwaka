@@ -8,4 +8,6 @@ plugins:
   - path: "@semantic-release/github"
   - path: "@semantic-release/git"
     assets:
-      - "**/package.json"
+      - "package.json"
+      - "apps/**/package.json"
+      - "packages/**/package.json"

@@ -1,7 +1,7 @@
 {
   "name": "demo",
   "version": "0.0.0",
-  "private":true,
+  "private": true,
   "scripts": {
     "start": "vite",
     "dev": "vite",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "mwaka": "0.0.2",
+    "solid-app-router": "^0.3.2",
     "solid-js": "^1.3.13"
   }
 }

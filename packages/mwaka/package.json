@@ -31,9 +31,6 @@
       ]
     }
   },
-  "scripts": {
-    "postpublish": "npm update mwaka -w demo -w components"
-  },
   "peerDependencies": {
     "solid-js": "^1.3.14"
   },

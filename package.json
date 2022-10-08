@@ -2,17 +2,16 @@
   "name": "root",
   "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "build": "npm run build -w aria -w components",
     "lint": "eslint '{packages,apps}/*/src/**/*.{js,ts,tsx}' --max-warnings=0 --no-ignore",
     "lint:fix": "npm run lint -- --fix",
     "pre-commit": "lint-staged",
     "prepare": "is-ci || husky install"
   },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "lint-staged": {
     "{packages,apps}/*/src/**/*.{js,ts,tsx}": [
       "eslint --fix --no-color --max-warnings=0 --no-ignore"

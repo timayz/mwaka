@@ -1,5 +1,5 @@
 {
-  "name": "components",
+  "name": "icons",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,6 +8,7 @@
   "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
+      "solid": "./dist/source/index.jsx",
       "import": "./dist/esm/index.js",
       "browser": "./dist/esm/index.js",
       "require": "./dist/esm/index.js",
@@ -15,14 +16,13 @@
     }
   },
   "scripts": {
-    "build": "rollup -c && rm -rf ../mwaka/dist/components && mkdir -p ../mwaka/dist && mv dist ../mwaka/dist/components"
+    "build": "rollup -c && rm -rf ../mwaka/dist/icons && mkdir -p ../mwaka/dist && mv dist ../mwaka/dist/icons"
   },
   "files": [
     "dist"
   ],
   "license": "Apache-2.0",
   "devDependencies": {
-    "mwaka": "0.0.8",
     "rollup": "^2.79.1",
     "rollup-preset-solid": "^1.4.0",
     "solid-js": "^1.5.7",

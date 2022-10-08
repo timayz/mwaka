@@ -1,0 +1,21 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.8.4",
+    "vite": "^3.1.6",
+    "vite-plugin-solid": "^2.3.9"
+  },
+  "dependencies": {
+    "mwaka": "0.0.8",
+    "solid-js": "^1.5.7"
+  }
+}

@@ -10,12 +10,12 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.8.4",
-    "vite": "^3.1.6",
-    "vite-plugin-solid": "^2.3.9"
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "vite-plugin-solid": "^2.6.1"
   },
   "dependencies": {
     "mwaka": "0.0.8",
-    "solid-js": "^1.5.7"
+    "solid-js": "^1.6.11"
   }
 }

@@ -43,8 +43,8 @@
     },
     "homepage": "https://github.com/timada-org/mwaka#readme",
     "peerDependencies": {
-      "solid-js": "^1.5.7",
-      "@internationalized/date": "^3.0.1"
+      "solid-js": "^1.6.11",
+      "@internationalized/date": "^3.1.0"
     }
   }
   

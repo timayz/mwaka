@@ -1,6 +1,6 @@
 [package]
 name = "mwaka"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 license = "Apache-2.0"
 publish = true
@@ -8,7 +8,5 @@ description = "A collection of libraries and tools that help you build DDD, CQRS
 repository = "https://github.com/timayz/mwaka"
 documentation = "https://docs.rs/mwaka"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-mwaka-aria = { path = "../mwaka-aria" }
+mwaka-aria = { path = "../mwaka-aria", version = "0.0.1" }

@@ -6,6 +6,6 @@ license = "Apache-2.0"
 publish = true
 description = "A UI toolkit for building accessible web apps and design systems with Leptos."
 repository = "https://github.com/timayz/mwaka"
-documentation = "https://docs.rs/mwaka-aira"
+documentation = "https://docs.rs/mwaka-aria"
 
 [dependencies]

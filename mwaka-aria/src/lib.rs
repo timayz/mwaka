@@ -1,5 +1,5 @@
 pub fn add(left: usize, right: usize) -> usize {
-    mwaka_aria::add(left, right)
+    left + right
 }
 
 #[cfg(test)]

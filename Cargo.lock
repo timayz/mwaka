@@ -463,7 +463,7 @@ dependencies = [
 
 [[package]]
 name = "demo"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "axum",
  "cfg-if",
@@ -519,7 +519,7 @@ checksum = "0688c2a7f92e427f44895cd63841bff7b29f8d7a1648b9e7e07a4a365b2e1257"
 
 [[package]]
 name = "docs"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "axum",
  "cfg-if",
@@ -1359,14 +1359,14 @@ dependencies = [
 
 [[package]]
 name = "mwaka"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "mwaka-aria",
 ]
 
 [[package]]
 name = "mwaka-aria"
-version = "0.0.1"
+version = "0.0.2"
 
 [[package]]
 name = "nom"

@@ -1360,6 +1360,9 @@ dependencies = [
 [[package]]
 name = "mwaka"
 version = "0.1.0"
+dependencies = [
+ "mwaka-aria",
+]
 
 [[package]]
 name = "mwaka-aria"

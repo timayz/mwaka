@@ -1,10 +1,10 @@
 [package]
-name = "demo"
+name = "playground"
 version = "0.0.2"
 edition = "2021"
 
 [package.metadata.leptos]
-output-name = "demo"
+output-name = "playground"
 site-root = "target/site"
 site-pkg-dir = "pkg"
 style-file = "style/main.scss"

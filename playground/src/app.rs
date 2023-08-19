@@ -7,12 +7,11 @@ use leptos_meta::*;
 use leptos_router::*;
 
 #[component]
-pub fn App(cx: Scope) -> impl IntoView {
+pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
-    provide_meta_context(cx);
+    provide_meta_context();
 
     view! {
-        cx,
 
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
@@ -22,17 +21,17 @@ pub fn App(cx: Scope) -> impl IntoView {
         <Title text="Welcome to Leptos"/>
 
         // content for this welcome page
-        <Router fallback=|cx| {
+        <Router fallback=|| {
             let mut outside_errors = Errors::default();
             outside_errors.insert_with_default_key(AppError::NotFound);
-            view! { cx,
+            view! {
                 <ErrorTemplate outside_errors/>
             }
-            .into_view(cx)
+            .into_view()
         }>
             <main>
                 <Routes>
-                    <Route path="" view=|cx| view! { cx, <HomePage/> }/>
+                    <Route path="" view=|| view! {  <HomePage/> }/>
                 </Routes>
             </main>
         </Router>
@@ -41,28 +40,47 @@ pub fn App(cx: Scope) -> impl IntoView {
 
 /// Renders the home page of your application.
 #[component]
-fn HomePage(cx: Scope) -> impl IntoView {
+fn HomePage() -> impl IntoView {
     // Creates a reactive value to update the button
-    let (count, set_count) = create_signal(cx, 0);
-    let on_click = move |_| set_count.update(|count| *count += 1);
+    let (count, set_count) = create_signal(0);
+    let (disabled, set_disabled) = create_signal(true);
+    let on_click = move |_| {
+        set_count.update(|count| *count += 1);
+        set_disabled.update(|disabled| *disabled = count.get() % 2 == 0);
+    };
 
-    let btn_ref = use_button::<html::Span>(cx);
+    let btn_ref = use_button::<html::Span>(disabled);
 
-    view! { cx,
+    view! {
         <h1>"Welcome to Leptos!"</h1>
         <button on:click=on_click>"Click Me: " {count}</button>
         <span ref=btn_ref>"Go to" {count}</span>
     }
 }
 
-fn use_button<T>(cx: Scope) -> NodeRef<T>
+fn use_button<T>(disabled: ReadSignal<bool>) -> NodeRef<T>
 where
     T: ElementDescriptor + 'static,
     T: Clone,
 {
-    let child_ref = create_node_ref::<T>(cx);
+    let child_ref = create_node_ref::<T>();
 
-    create_effect(cx, move |_| {
+    create_effect(move |_| {
+        let button = match child_ref.get() {
+            Some(e) => e.into_any(),
+            _ => return,
+        };
+
+        let is_native_button = is_button(&button);
+        let is_native_link =
+            button.tag_name().as_str() == "A" && button.get_attribute("href").is_some();
+
+        if !is_native_button && !is_native_link {
+            let _ = button.set_attribute("role", "button");
+        }
+    });
+
+    create_effect(move |_| {
         let button = match child_ref.get() {
             Some(e) => e.into_any(),
             _ => return,
@@ -73,24 +91,26 @@ where
         let is_native_link =
             button.tag_name().as_str() == "A" && button.get_attribute("href").is_some();
 
-        let disabled = button.get_attribute("disabled").is_some();
-
         if !is_native_button && !is_native_link {
-            let _ = button.set_attribute("role", "button");
-
-            if !disabled {
-                let _ = button.set_attribute("tabindex", "0");
+            if disabled.get() {
+                let _ = button.remove_attribute("tabindex");
             } else {
-                let _ = button.remove_attribute("disabled");
+                let _ = button.set_attribute("tabindex", "0");
             }
         }
 
-        if !is_native_button && !is_native_input && disabled {
-            let _ = button.set_attribute("aria-disabled", "true");
+        if !is_native_button && !is_native_input {
+            if disabled.get() {
+                let _ = button.set_attribute("aria-disabled", "true");
+            } else {
+                let _ = button.remove_attribute("aria-disabled");
+            }
         }
 
-        if disabled {
+        if disabled.get() {
             let _ = button.set_attribute("data-disabled", "");
+        } else {
+            let _ = button.remove_attribute("data-disabled");
         }
     });
 

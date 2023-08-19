@@ -9,3 +9,4 @@ repository = "https://github.com/timayz/mwaka"
 documentation = "https://docs.rs/mwaka-aria"
 
 [dependencies]
+leptos = { version = "0.5.0-beta" }

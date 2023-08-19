@@ -26,6 +26,8 @@ lib-profile-release = "wasm-release"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+mwaka = { path = "../mwaka" }
+#mwaka-aria = { path = "../mwaka-aria" }
 axum = { version = "0.6.4", optional = true }
 console_error_panic_hook = "0.1.7"
 console_log = "1.0.0"

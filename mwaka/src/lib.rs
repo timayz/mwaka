@@ -1,14 +1,19 @@
-pub fn add(left: usize, right: usize) -> usize {
-    mwaka_aria::add(left, right)
-}
+use leptos::*;
+use mwaka_aria::use_button;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+#[component]
+pub fn Button(
+    children: Children,
+    #[prop(default = {
+        let (disabled, _) = create_signal(false);
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        disabled
+    })]
+    disabled: ReadSignal<bool>,
+) -> impl IntoView {
+    let button_ref = use_button::<html::Button>(disabled);
+
+    view! {
+        <button disabled=move || disabled.get() ref=button_ref>{children()}</button>
     }
 }

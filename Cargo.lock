@@ -1338,12 +1338,16 @@ dependencies = [
 name = "mwaka"
 version = "0.0.2"
 dependencies = [
+ "leptos",
  "mwaka-aria",
 ]
 
 [[package]]
 name = "mwaka-aria"
 version = "0.0.2"
+dependencies = [
+ "leptos",
+]
 
 [[package]]
 name = "nom"
@@ -1566,6 +1570,7 @@ dependencies = [
  "leptos_meta",
  "leptos_router",
  "log",
+ "mwaka",
  "simple_logger",
  "thiserror",
  "tokio",

@@ -118,14 +118,14 @@ where
 }
 
 fn is_button(el: &HtmlElement<AnyElement>) -> bool {
-    match (el.tag_name().as_str(), el.get_attribute("type").as_deref()) {
-        ("BUTTON", _) => true,
-        ("INPUT", Some("button")) => true,
-        ("INPUT", Some("color")) => true,
-        ("INPUT", Some("file")) => true,
-        ("INPUT", Some("image")) => true,
-        ("INPUT", Some("reset")) => true,
-        ("INPUT", Some("submit")) => true,
-        _ => false,
-    }
+    matches!(
+        (el.tag_name().as_str(), el.get_attribute("type").as_deref()),
+        ("BUTTON", _)
+            | ("INPUT", Some("button"))
+            | ("INPUT", Some("color"))
+            | ("INPUT", Some("file"))
+            | ("INPUT", Some("image"))
+            | ("INPUT", Some("reset"))
+            | ("INPUT", Some("submit"))
+    )
 }

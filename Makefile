@@ -14,7 +14,7 @@ udeps:
 	cargo udeps -p mwaka -p mwaka-aria
 
 udeps.leptos:
-	cargo udeps --features ssr,hydrate -p demo -p docs 
+	cargo udeps --features ssr,hydrate -p playground -p docs 
 
 advisory.clean:
 	rm -rf ~/.cargo/advisory-db

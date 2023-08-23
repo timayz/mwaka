@@ -10,3 +10,4 @@ documentation = "https://docs.rs/mwaka"
 
 [dependencies]
 mwaka-aria = { path = "../mwaka-aria", version = "0.0.2" }
+leptos = { version = "0.5.0-beta" }

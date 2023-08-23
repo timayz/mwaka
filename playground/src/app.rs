@@ -42,15 +42,13 @@ pub fn App() -> impl IntoView {
 fn HomePage() -> impl IntoView {
     // Creates a reactive value to update the button
     let (count, set_count) = create_signal(0);
-    let (disabled, set_disabled) = create_signal(false);
 
     let on_click = move |_| {
         set_count.update(|count| *count += 1);
-        set_disabled.update(|disabled| *disabled = count.get() % 2 == 0);
     };
 
     view! {
         <h1>"Welcome to Leptos!"</h1>
-        <Button disabled=disabled on:click=on_click>"Click Me: " {count}</Button>
+        <Button on:click=on_click>"Click Me: " {count}</Button>
     }
 }

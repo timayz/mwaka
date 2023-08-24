@@ -13,7 +13,16 @@ pub fn Button(
 ) -> impl IntoView {
     let attrs = create_button(ButtonElement::Button, disabled);
 
+    let on_click = |_| {};
+
     view! {
-        <button disabled=move || disabled.get() data-disabled=move || attrs.data_disabled.get()>{children()}</button>
+        <button
+            disabled=move || disabled.get()
+            data-disabled=move || attrs.data_disabled.get()
+            on:keypress=attrs.on_keypress
+            on:click=on_click
+        >
+            {children()}
+        </button>
     }
 }

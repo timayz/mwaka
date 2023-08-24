@@ -1,4 +1,4 @@
-use leptos::*;
+use leptos::{ev::KeyboardEvent, *};
 
 pub enum ButtonElement {
     Input(Option<&'static str>),
@@ -7,12 +7,12 @@ pub enum ButtonElement {
     Other,
 }
 
-#[derive(Debug, Clone)]
 pub struct ButtonAttrs {
     pub role: Option<String>,
     pub tabindex: ReadSignal<Option<String>>,
     pub aria_disabled: ReadSignal<Option<String>>,
     pub data_disabled: ReadSignal<Option<String>>,
+    pub on_keypress: Box<dyn Fn(KeyboardEvent)>,
 }
 
 pub fn create_button(element: ButtonElement, disabled: ReadSignal<bool>) -> ButtonAttrs {
@@ -61,10 +61,17 @@ pub fn create_button(element: ButtonElement, disabled: ReadSignal<bool>) -> Butt
         });
     });
 
+    let on_keypress = Box::new(move |e: KeyboardEvent| {
+        if e.key() == "Enter" && !disabled.get() {
+
+        }
+    });
+
     ButtonAttrs {
         role,
         tabindex,
         aria_disabled,
         data_disabled,
+        on_keypress,
     }
 }

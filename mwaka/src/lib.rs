@@ -1,28 +1,15 @@
 use leptos::*;
-use mwaka_aria::{create_button, ButtonElement};
+use mwaka_aria::{ButtonElement, OptionalButtonRoot, ButtonEvent};
 
 #[component]
 pub fn Button(
     children: Children,
-    #[prop(default = {
-        let (disabled, _) = create_signal(false);
-
-        disabled
-    })]
-    disabled: ReadSignal<bool>,
+    #[prop(optional, into)] disabled: Option<ReadSignal<bool>>,
+    #[prop(optional)] on_click: Option<Box<dyn Fn(ButtonEvent)>>,
 ) -> impl IntoView {
-    let attrs = create_button(ButtonElement::Button, disabled);
-
-    let on_click = |_| {};
-
     view! {
-        <button
-            disabled=move || disabled.get()
-            data-disabled=move || attrs.data_disabled.get()
-            on:keypress=attrs.on_keypress
-            on:click=on_click
-        >
-            {children()}
-        </button>
+        <OptionalButtonRoot element=ButtonElement::Other disabled=disabled on_click=on_click>
+            <button>{children()}</button>
+        </OptionalButtonRoot>
     }
 }

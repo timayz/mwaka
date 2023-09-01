@@ -1,5 +1,5 @@
 use leptos::*;
-use mwaka_aria::{ButtonElement, OptionalButtonRoot, ButtonEvent};
+use mwaka_aria::{ButtonElement, ButtonEvent, OptionalButtonRoot};
 
 #[component]
 pub fn Button(

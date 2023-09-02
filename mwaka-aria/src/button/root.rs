@@ -66,7 +66,7 @@ pub fn ButtonRoot(
         set_data_disabled.set(if disabled { Some("".to_owned()) } else { None });
     });
 
-    let on_click = on_click.map(|on_click| Rc::new(on_click));
+    let on_click = on_click.map(Rc::new);
 
     children().nodes.first().map(|node| {
         node.as_element().map(|element| {

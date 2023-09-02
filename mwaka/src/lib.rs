@@ -1,5 +1,5 @@
 use leptos::*;
-use mwaka_aria::{ButtonElement, ButtonEvent, OptionalButtonRoot};
+use mwaka_aria::{ButtonElement, ButtonEvent, ButtonRoot};
 
 #[component]
 pub fn Button(
@@ -8,8 +8,8 @@ pub fn Button(
     #[prop(optional)] on_click: Option<Box<dyn Fn(ButtonEvent)>>,
 ) -> impl IntoView {
     view! {
-        <OptionalButtonRoot element=ButtonElement::Other disabled=disabled on_click=on_click>
+        <ButtonRoot element=ButtonElement::Other disabled=disabled on_click=on_click>
             <button>{children()}</button>
-        </OptionalButtonRoot>
+        </ButtonRoot>
     }
 }

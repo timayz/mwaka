@@ -13,7 +13,7 @@ fn should_not_have_role_when_native_button() {
     let runtime = create_runtime();
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Button>
+        <ButtonRoot element=ButtonElement::Button on_click=None disabled=None>
             <button>"Click me"</button>
         </ButtonRoot>
     }
@@ -33,7 +33,7 @@ fn should_not_have_role_when_a_with_href() {
     let runtime = create_runtime();
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Link(true)>
+        <ButtonRoot element=ButtonElement::Link(true) on_click=None disabled=None>
             <a href="https://timada.co">"Click me"</a>
         </ButtonRoot>
     }
@@ -53,7 +53,7 @@ fn should_have_role_and_tabindex_0_when_not_native_button() {
     let runtime = create_runtime();
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Other>
+        <ButtonRoot element=ButtonElement::Other on_click=None disabled=None>
             <div>"Click me"</div>
         </ButtonRoot>
     }
@@ -73,7 +73,7 @@ fn should_have_role_tabindex_0_when_a_without_href() {
     let runtime = create_runtime();
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Link(false)>
+        <ButtonRoot element=ButtonElement::Link(false) on_click=None disabled=None>
             <a>"Click me"</a>
         </ButtonRoot>
     }
@@ -95,7 +95,7 @@ fn should_have_correct_attributes_when_not_native_button_disabled() {
     let (disabled, _) = create_signal(true);
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Other disabled=disabled>
+        <ButtonRoot element=ButtonElement::Other disabled=disabled on_click=None>
             <div>"Click me"</div>
         </ButtonRoot>
     }
@@ -117,7 +117,7 @@ fn should_have_correct_attributes_when_input_disabled() {
     let (disabled, _) = create_signal(true);
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Input(None) disabled=disabled>
+        <ButtonRoot element=ButtonElement::Input(None) disabled=disabled on_click=None>
             <input />
         </ButtonRoot>
     }
@@ -139,7 +139,7 @@ fn should_have_data_disabled_when_native_button_disabled() {
     let (disabled, _) = create_signal(true);
 
     let view_string = view! {
-        <ButtonRoot element=ButtonElement::Button disabled=disabled>
+        <ButtonRoot element=ButtonElement::Button disabled=disabled on_click=None>
             <button>"Click me"</button>
         </ButtonRoot>
     }

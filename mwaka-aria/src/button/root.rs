@@ -21,18 +21,6 @@ pub enum ButtonEvent {
 pub fn ButtonRoot(
     children: Children,
     element: ButtonElement,
-    #[prop(optional, into)] disabled: Option<ReadSignal<bool>>,
-    #[prop(optional)] on_click: Option<Box<dyn Fn(ButtonEvent)>>,
-) -> impl IntoView {
-    view! {
-        <OptionalButtonRoot element=element disabled=disabled on_click=on_click>{children()}</OptionalButtonRoot>
-    }
-}
-
-#[component]
-pub fn OptionalButtonRoot(
-    children: Children,
-    element: ButtonElement,
     #[prop(into)] disabled: Option<ReadSignal<bool>>,
     on_click: Option<Box<dyn Fn(ButtonEvent)>>,
 ) -> impl IntoView {

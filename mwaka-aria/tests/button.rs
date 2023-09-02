@@ -1,23 +1,28 @@
+use lazy_static::lazy_static;
 use leptos::*;
-use mwaka_aria::create_button;
+use mwaka_aria::{ButtonElement, ButtonRoot};
 use pretty_assertions::assert_eq;
+use regex_lite::Regex;
+
+lazy_static! {
+    static ref HTML_COMMENTS: Regex = Regex::new("<\\!--.*?-->").unwrap();
+}
 
 #[test]
 fn should_not_have_role_when_native_button() {
     let runtime = create_runtime();
 
-    let (disabled, _) = create_signal(false);
-    let attrs = create_button(mwaka_aria::ButtonElement::Button, disabled);
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Button on_click=None disabled=None>
+            <button>"Click me"</button>
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <button role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get() data-disabled=attrs.data_disabled.get()>
-                "Click me"
-            </button>
-        }
-        .into_view()
-        .render_to_string(),
-        "<button     id=\"_0-0-1\">Click me</button>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<button id=\"_0-0-3\" leptos-hk=\"_0-0-3\">Click me</button>"
     );
 
     runtime.dispose();
@@ -27,18 +32,17 @@ fn should_not_have_role_when_native_button() {
 fn should_not_have_role_when_a_with_href() {
     let runtime = create_runtime();
 
-    let (disabled, _) = create_signal(false);
-    let attrs = create_button(mwaka_aria::ButtonElement::Link(true), disabled);
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Link(true) on_click=None disabled=None>
+            <a href="https://timada.co">"Click me"</a>
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <a href="https://timada.co" role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get()>
-                "Click me"
-            </a>
-        }
-        .into_view()
-        .render_to_string(),
-        "<a href=\"https://timada.co\"    id=\"_0-0-1\">Click me</a>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<a href=\"https://timada.co\" id=\"_0-0-3\" leptos-hk=\"_0-0-3\">Click me</a>"
     );
 
     runtime.dispose();
@@ -48,18 +52,17 @@ fn should_not_have_role_when_a_with_href() {
 fn should_have_role_and_tabindex_0_when_not_native_button() {
     let runtime = create_runtime();
 
-    let (disabled, _) = create_signal(false);
-    let attrs = create_button(mwaka_aria::ButtonElement::Other, disabled);
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Other on_click=None disabled=None>
+            <div>"Click me"</div>
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <div role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get()>
-                "Click me"
-            </div>
-        }
-        .into_view()
-        .render_to_string(),
-        "<div role=\"button\" tabindex=\"0\"  id=\"_0-0-1\">Click me</div>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<div id=\"_0-0-3\" role=\"button\" tabindex=\"0\" leptos-hk=\"_0-0-3\">Click me</div>"
     );
 
     runtime.dispose();
@@ -69,18 +72,17 @@ fn should_have_role_and_tabindex_0_when_not_native_button() {
 fn should_have_role_tabindex_0_when_a_without_href() {
     let runtime = create_runtime();
 
-    let (disabled, _) = create_signal(false);
-    let attrs = create_button(mwaka_aria::ButtonElement::Link(false), disabled);
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Link(false) on_click=None disabled=None>
+            <a>"Click me"</a>
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <a role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get()>
-                "Click me"
-            </a>
-        }
-        .into_view()
-        .render_to_string(),
-        "<a role=\"button\" tabindex=\"0\"  id=\"_0-0-1\">Click me</a>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<a id=\"_0-0-3\" role=\"button\" tabindex=\"0\" leptos-hk=\"_0-0-3\">Click me</a>"
     );
 
     runtime.dispose();
@@ -91,17 +93,18 @@ fn should_have_correct_attributes_when_not_native_button_disabled() {
     let runtime = create_runtime();
 
     let (disabled, _) = create_signal(true);
-    let attrs = create_button(mwaka_aria::ButtonElement::Other, disabled);
+
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Other disabled=disabled on_click=None>
+            <div>"Click me"</div>
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <div role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get()>
-                "Click me"
-            </div>
-        }
-        .into_view()
-        .render_to_string(),
-        "<div role=\"button\"  aria-disabled=\"true\" id=\"_0-0-1\">Click me</div>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<div id=\"_0-0-3\" role=\"button\" aria-disabled=\"true\" data-disabled leptos-hk=\"_0-0-3\">Click me</div>"
     );
 
     runtime.dispose();
@@ -112,15 +115,18 @@ fn should_have_correct_attributes_when_input_disabled() {
     let runtime = create_runtime();
 
     let (disabled, _) = create_signal(true);
-    let attrs = create_button(mwaka_aria::ButtonElement::Input(None), disabled);
+
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Input(None) disabled=disabled on_click=None>
+            <input />
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <input role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get() />
-        }
-        .into_view()
-        .render_to_string(),
-        "<input role=\"button\"   id=\"_0-0-1\"/>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<input id=\"_0-0-3\" role=\"button\" data-disabled leptos-hk=\"_0-0-3\"/>"
     );
 
     runtime.dispose();
@@ -131,17 +137,18 @@ fn should_have_data_disabled_when_native_button_disabled() {
     let runtime = create_runtime();
 
     let (disabled, _) = create_signal(true);
-    let attrs = create_button(mwaka_aria::ButtonElement::Button, disabled);
+
+    let view_string = view! {
+        <ButtonRoot element=ButtonElement::Button disabled=disabled on_click=None>
+            <button>"Click me"</button>
+        </ButtonRoot>
+    }
+    .into_view()
+    .render_to_string();
 
     assert_eq!(
-        view! {
-            <button role=attrs.role tabindex=attrs.tabindex.get() aria-disabled=attrs.aria_disabled.get() data-disabled=attrs.data_disabled.get()>
-                "Click me"
-            </button>
-        }
-        .into_view()
-        .render_to_string(),
-        "<button    data-disabled=\"\" id=\"_0-0-1\">Click me</button>"
+        HTML_COMMENTS.replace_all(&view_string, ""),
+        "<button id=\"_0-0-3\" data-disabled leptos-hk=\"_0-0-3\">Click me</button>"
     );
 
     runtime.dispose();

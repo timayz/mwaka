@@ -466,7 +466,6 @@ dependencies = [
  "tokio",
  "tower",
  "tower-http",
- "tracing",
  "wasm-bindgen",
 ]
 
@@ -1435,7 +1434,6 @@ dependencies = [
  "tokio",
  "tower",
  "tower-http",
- "tracing",
  "wasm-bindgen",
 ]
 

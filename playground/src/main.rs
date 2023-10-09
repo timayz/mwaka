@@ -2,7 +2,7 @@
 #[tokio::main]
 async fn main() {
     use axum::{routing::post, Router};
-    use leptos::*;
+    use leptos::{logging::*, *};
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use playground::app::*;
     use playground::fileserv::file_and_error_handler;
@@ -17,7 +17,7 @@ async fn main() {
     let conf = get_configuration(None).await.unwrap();
     let leptos_options = conf.leptos_options;
     let addr = leptos_options.site_addr;
-    let routes = generate_route_list(|| view! { <App/> }).await;
+    let routes = generate_route_list(|| view! { <App/> });
 
     // build our application with a route
     let app = Router::new()

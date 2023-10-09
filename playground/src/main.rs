@@ -2,7 +2,7 @@
 #[tokio::main]
 async fn main() {
     use axum::{routing::post, Router};
-    use leptos::*;
+    use leptos::{*, logging::*};
     use leptos_axum::{generate_route_list, LeptosRoutes};
     use playground::app::*;
     use playground::fileserv::file_and_error_handler;

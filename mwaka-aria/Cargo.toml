@@ -9,7 +9,7 @@ repository = "https://github.com/timayz/mwaka"
 documentation = "https://docs.rs/mwaka-aria"
 
 [dependencies]
-leptos = { version = "0.5.1" }
+leptos = { version = "0.6.11" }
 
 [dev-dependencies]
 pretty_assertions = "1.4.0"
